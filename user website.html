@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নালুহাটি তরুণ সামাজিক সংগঠন</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; background: #f8fafc; scroll-behavior: smooth; margin: 0; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .section-tab { display: none; }
+        .section-tab.active { display: block; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .active-nav { color: #e11d48; border-bottom: 3px solid #e11d48; }
+        .marquee-container { background: linear-gradient(90deg, #e11d48, #fb7185); color: white; padding: 12px 0; overflow: hidden; }
+        .marquee-text { display: inline-block; white-space: nowrap; animation: marquee 25s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        
+        .card-hover:hover { transform: translateY(-5px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="pb-24 md:pb-0">
+
+    <div class="marquee-container sticky top-0 z-[60] shadow-lg">
+        <div id="scrolling-notice" class="marquee-text font-bold text-lg">সংগঠনের নোটিশ আপডেট হচ্ছে...</div>
+    </div>
+
+    <header class="hidden md:flex glass sticky top-[48px] z-50 justify-between items-center px-12 py-3 shadow-sm border-b">
+        <div class="flex items-center gap-3">
+            <img src="https://i.postimg.cc/wjxpT7LL/Logopit-1773419018821.png" alt="Logo" class="w-14 h-14 object-contain rounded-full border-2 border-rose-500 p-0.5 bg-white shadow-md">
+            <div>
+                <h1 class="text-2xl font-black text-slate-800 leading-tight">নালুহাটি <span class="text-rose-600">সংগঠন</span></h1>
+                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Social Organization</p>
+            </div>
+        </div>
+        <nav class="flex gap-8 font-bold text-slate-600">
+            <button onclick="showTab('home', this)" class="active-nav py-2 transition">হোম</button>
+            <button onclick="showTab('blood', this)" class="py-2 hover:text-rose-600 transition">রক্তদান</button>
+            <button onclick="showTab('members', this)" class="py-2 hover:text-rose-600 transition">সদস্যবৃন্দ</button>
+            <button onclick="showTab('scholarship', this)" class="py-2 hover:text-rose-600 transition">শিক্ষাবৃত্তি</button>
+        </nav>
+    </header>
+
+    <div class="md:hidden flex items-center justify-between p-4 bg-white shadow-sm sticky top-[48px] z-50">
+        <div class="flex items-center gap-2">
+            <img src="https://i.postimg.cc/wjxpT7LL/Logopit-1773419018821.png" class="w-10 h-10 object-contain rounded-full border border-rose-500 bg-white">
+            <span class="font-black text-slate-800">নালুহাটি সংগঠন</span>
+        </div>
+        <a href="https://www.facebook.com/AkmRedwan4100" target="_blank" class="text-rose-600 text-xl"><i class="fa-brands fa-facebook"></i></a>
+    </div>
+
+    <main class="max-w-7xl mx-auto p-4 md:p-10">
+        <section id="home" class="section-tab active">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-8 border-l-8 border-rose-600 pl-4">সামাজিক কার্যক্রম</h2>
+            <div id="relief-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="blood" class="section-tab">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-8 border-l-8 border-red-600 pl-4">রক্তদাতা তালিকা</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="blood-container"></div>
+        </section>
+
+        <section id="members" class="section-tab">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-8 border-l-8 border-blue-600 pl-4">সদস্যবৃন্দ</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6" id="member-container"></div>
+        </section>
+
+        <section id="scholarship" class="section-tab">
+            <h2 class="text-3xl font-extrabold text-slate-800 mb-8 border-l-8 border-emerald-600 pl-4">শিক্ষাবৃত্তি কর্নার</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="scholarship-container"></div>
+        </section>
+
+        <footer class="mt-20 py-10 border-t text-center">
+            <p class="text-slate-400 text-sm mb-2">Developed By</p>
+            <a href="https://www.facebook.com/AkmRedwan4100" target="_blank" class="inline-flex items-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-2xl font-bold shadow-xl hover:bg-rose-600 transition-all">
+                <i class="fa-brands fa-facebook text-xl"></i> Akm Redwan
+            </a>
+        </footer>
+    </main>
+
+    <nav class="md:hidden fixed bottom-6 left-6 right-6 bg-white/90 backdrop-blur-lg shadow-2xl rounded-3xl flex justify-around p-4 z-50 border border-white/50">
+        <button onclick="showTab('home', this)" class="flex flex-col items-center text-rose-600"><i class="fa-solid fa-house-chimney text-xl"></i><span class="text-[10px] mt-1 font-bold">হোম</span></button>
+        <button onclick="showTab('blood', this)" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-droplet text-xl"></i><span class="text-[10px] mt-1 font-bold">রক্ত</span></button>
+        <button onclick="showTab('members', this)" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-users text-xl"></i><span class="text-[10px] mt-1 font-bold">সদস্য</span></button>
+        <button onclick="showTab('scholarship', this)" class="flex flex-col items-center text-slate-400"><i class="fa-solid fa-book-open text-xl"></i><span class="text-[10px] mt-1 font-bold">শিক্ষা</span></button>
+    </nav>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getFirestore, collection, onSnapshot, query, orderBy, doc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyCyr_oi-KQ5eX2uD2v-hYQ-yFMEbQ4cwTs",
+            authDomain: "mahin-ahmed-caf45.firebaseapp.com",
+            projectId: "mahin-ahmed-caf45",
+            storageBucket: "mahin-ahmed-caf45.firebasestorage.app",
+            messagingSenderId: "742066762050",
+            appId: "1:742066762050:web:a4386ccfcdc59835e298db"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // --- Marquee Sync ---
+        onSnapshot(doc(db, "settings", "marquee"), (doc) => {
+            if (doc.exists()) document.getElementById('scrolling-notice').innerText = doc.data().text;
+        });
+
+        // --- Tab Switch Logic ---
+        window.showTab = (id, btn) => {
+            document.querySelectorAll('.section-tab').forEach(s => s.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            
+            // Handle Navigation Highlights
+            const parent = btn.parentElement;
+            parent.querySelectorAll('button').forEach(b => {
+                b.classList.remove('active-nav', 'text-rose-600');
+                b.classList.add('text-slate-400');
+            });
+            btn.classList.add('active-nav', 'text-rose-600');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // --- Data Sync Function ---
+        function syncData(collectionName, containerId, templateFunc) {
+            const q = query(collection(db, collectionName), orderBy("timestamp", "desc"));
+            onSnapshot(q, (snap) => {
+                const container = document.getElementById(containerId);
+                if(container) {
+                    container.innerHTML = snap.empty ? '<p class="text-center text-slate-400 py-10 col-span-full">কোনো তথ্য পাওয়া যায়নি</p>' : '';
+                    snap.forEach(d => {
+                        container.innerHTML += templateFunc(d.data());
+                    });
+                }
+            });
+        }
+
+        // --- Dynamic Templates ---
+
+        // Home (Activities)
+        syncData("relief", "relief-container", d => `
+            <div class="bg-white rounded-[2.5rem] overflow-hidden shadow-lg border border-white card-hover">
+                <div class="h-56 overflow-hidden">
+                    <img src="${d.img || 'https://via.placeholder.com/400x250'}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8">
+                    <h3 class="font-black text-xl text-slate-800 mb-3">${d.name || d.title}</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed">${d.desc || 'কোনো বর্ণনা নেই'}</p>
+                </div>
+            </div>`);
+
+        // Members
+        syncData("members", "member-container", d => `
+            <div class="bg-white p-5 rounded-[2rem] text-center shadow-md border border-slate-50 card-hover">
+                <img src="${d.img || 'https://via.placeholder.com/150'}" class="w-20 h-20 mx-auto rounded-full object-cover mb-3 border-4 border-rose-100 shadow-sm">
+                <h3 class="font-bold text-slate-800 text-sm leading-tight">${d.name}</h3>
+                <p class="text-[10px] text-rose-600 font-bold uppercase mt-1">${d.role || 'সদস্য'}</p>
+                <div class="mt-3 inline-block bg-rose-50 text-rose-600 text-[9px] px-3 py-1 rounded-full font-black">রক্ত: ${d.blood || d.bloodVal || 'N/A'}</div>
+            </div>`);
+
+        // Blood Donors
+        syncData("donors", "blood-container", d => `
+            <div class="bg-white p-5 rounded-3xl flex items-center justify-between shadow-md border-r-8 border-red-600 card-hover">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-red-100 rounded-2xl flex items-center justify-center text-red-600 font-black text-lg shadow-inner">${d.blood || d.bloodVal || '?'}</div>
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">${d.name}</h3>
+                        <p class="text-[10px] text-slate-400 font-bold"><i class="fa-solid fa-location-dot mr-1"></i>${d.phone ? 'সক্রিয় দাতা' : 'ঠিকানা উপলব্ধ নয়'}</p>
+                    </div>
+                </div>
+                <a href="tel:${d.phone}" class="w-12 h-12 bg-green-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-green-200 hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-phone-flip text-lg"></i>
+                </a>
+            </div>`);
+
+        // Scholarship
+        syncData("scholarship", "scholarship-container", d => `
+            <div class="bg-white p-6 rounded-[2.5rem] shadow-md flex flex-col sm:flex-row gap-6 items-center card-hover">
+                <img src="${d.img || 'https://via.placeholder.com/150'}" class="w-28 h-28 rounded-3xl object-cover shadow-xl border-4 border-white">
+                <div class="text-center sm:text-left">
+                    <h3 class="font-black text-slate-800 text-lg mb-2">${d.name || d.title}</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">${d.desc || ''}</p>
+                </div>
+            </div>`);
+
+    </script>
+</body>
+</html>
